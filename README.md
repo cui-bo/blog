@@ -1,2 +1,2 @@
-rails3_posts
+rails3
 ============
