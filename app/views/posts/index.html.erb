@@ -1,13 +1,15 @@
 <h1>Listing posts</h1>
- 
-<table id="posts">
+
+<%= link_to "New post", :controller => "posts", :action => "new" %>
+
+<table id="posts" class="display">
   <thead>
     <tr>
       <th>Title</th>
       <th>Text</th>
-  	<th></th>
-  	<th></th>
-  	<th></th>
+      <th>Show Post's Detail</th>
+      <th>Edit Post</th>
+      <th>Delete Post</th>
     </tr>
   </thead>
  
@@ -23,7 +25,5 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to "New post", :controller => "posts", :action => "new" %>
 
 <%= render 'user_details' %>
