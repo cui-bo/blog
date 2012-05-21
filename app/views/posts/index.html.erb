@@ -1,4 +1,5 @@
-<h1>Listing posts</h1>
+<h1><%= t "posts.headline", default: "Listing posts" %></h1>
+<%= t('.hello', :default => 'Hello world') %>
 
 <%= link_to "New post", :controller => "posts", :action => "new" %>
 
