@@ -41,3 +41,5 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 gem 'copycopter_client', '2.0.0'
+
+gem 'devise'
