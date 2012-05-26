@@ -1,5 +1,20 @@
+<div id="admin_nav">
+  <% if admin_signed_in? %>
+    Signed in as <%= current_admin.email %>. Not you?
+    <%= link_to "Sign out", destroy_admin_session_path, :method => :delete %>
+  <% else %>
+    <%= link_to "Sign up", new_admin_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+  <% end %>
+</div>
+
 <h1><%= t "posts.headline", default: "Listing posts" %></h1>
-<%= t('.hello', :default => 'Hello world') %>
+
+<div id="acceuil">
+	<%= t('.hello', :default => 'Hello guest') %>
+	
+	<%= current_admin %>
+</div>
+
 
 <%= link_to "New post", :controller => "posts", :action => "new" %>
 
