@@ -21,6 +21,8 @@ group :assets do
 
   gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
   gem 'jquery-ui-rails'
+
+  gem 'twitter-bootstrap-rails'
 end
 
 gem 'jquery-rails'

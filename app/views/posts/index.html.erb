@@ -1,45 +1,38 @@
-<div id="admin_nav">
-  <% if admin_signed_in? %>
-    Signed in as <%= current_admin.email %>. Not you?
-    <%= link_to "Sign out", destroy_admin_session_path, :method => :delete %>
-  <% else %>
-    <%= link_to "Sign up", new_admin_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-  <% end %>
+<%- model_class = Post.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
-
-<h1><%= t "posts.headline", default: "Listing posts" %></h1>
-
-<div id="acceuil">
-	<%= t('.hello', :default => 'Hello guest') %>
-	
-	<%= current_admin %>
-</div>
-
-
-<%= link_to "New post", :controller => "posts", :action => "new" %>
-
-<table id="posts" class="display">
+<table class="table table-striped" id="posts">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Text</th>
-      <th>Show Post's Detail</th>
-      <th>Edit Post</th>
-      <th>Delete Post</th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:text) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
- 
   <tbody>
     <% @posts.each do |post| %>
       <tr>
+        <td><%= link_to post.id, post_path(post) %></td>
         <td><%= post.title %></td>
         <td><%= post.text %></td>
-  	  <td><%= link_to "Show", :controller => "posts", :action => :show, :id => post.id %></td>
-  	  <td><%= link_to "Edit", :controller => "posts", :action => :edit, :id => post.id %></td>
-  	  <td><%= link_to "Destroy", {:controller => "posts", :action => :destroy, :id => post.id}, :method => :delete, :confirm => 'Are you sure ?' %></td>
+        <td><%=l post.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_post_path(post), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      post_path(post),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= render 'user_details' %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_post_path,
+            :class => 'btn btn-primary' %>
